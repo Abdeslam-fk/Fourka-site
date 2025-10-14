@@ -606,3 +606,11 @@ window.addEventListener('offline', () => {
     }
 
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.product-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      this.querySelector('.flip-card-inner').classList.toggle('flipped');
+    });
+  });
+});

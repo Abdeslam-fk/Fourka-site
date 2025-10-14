@@ -96,7 +96,7 @@ const DATABASE = {
         },
         {
             id: 5,
-            nom: "Batterie Auto 60Ah",
+            nom: "Batterie Auto 70Ah",
             image: "bbr3.jpg",
             description: "Batterie haute capacité pour démarrage fiable en toutes conditions",
             disponible: true,
@@ -604,4 +604,5 @@ window.addEventListener('offline', () => {
     if (window.notifications) {
         notifications.show('Mode hors ligne activé', 'warning');
     }
+
 });

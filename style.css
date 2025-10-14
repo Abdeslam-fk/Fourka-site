@@ -75,7 +75,32 @@ header {
   top: 0;
   z-index: 1000;
 }
+@media (max-width: 600px) {
+  header {
+    position: static !important;
+    height: auto !important;
+    min-height: 0 !important;
+    z-index: 1 !important;
+  }
+  .main-nav {
+    position: static !important;
+    background: transparent !important;
+  }
+  /* Optionnel si ton menu mobile reste ouvert : */
+  .nav-links.mobile-open {
+    position: absolute;
+    top: 70px; /* ou la hauteur de ton header */
+    width: 95vw;
+    background: var(--primary-color);
+    left: 0;
+    z-index: 999; /* mais pas sur tout ! */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.10);
+  }
 
+  .nav-links {
+    background: transparent;
+  }
+}
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -1296,4 +1321,5 @@ footer {
   }
 
 }
+
 

@@ -461,7 +461,9 @@ h2 {
   transform: translateY(-5px);
   box-shadow: var(--box-shadow-lg);
 }
-
+.flip-card-inner.flipped {
+  transform: rotateY(180deg);
+}
 .flip-card-inner {
   position: relative;
   width: 100%;
@@ -1294,3 +1296,4 @@ footer {
   }
 
 }
+

@@ -158,12 +158,25 @@ header {
 
 /* Bannière héro moderne - Arrière-plan plus clair */
 .hero-banner {
-  background: linear-gradient(135deg, rgba(46, 139, 87, 0.7), rgba(26, 107, 59, 0.7)), url('ph.jpg') center/cover;
+  background: linear-gradient(135deg, rgba(46, 139, 87, 0.7), rgba(26, 107, 59, 0.7)), url('ph.jpg') center/cover no-repeat;
   min-height: 80vh;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
+  padding: 0 20px; /* Ajouté pour avoir un peu d’espacement */
+}
+
+/* Adaptation pour téléphones */
+@media (max-width: 600px) {
+  .hero-banner {
+    min-height: 50vh;  /* Réduit la hauteur pour petits écrans */
+    background-position: center center; /* Centrage image */
+    background-size: cover; /* Garantit que l’image couvre bien */
+    padding: 10px 10px; /* Padding plus petit */
+    flex-direction: column; /* Si tu as du texte à côté, il sera empilé verticalement */
+    justify-content: center;
+  }
 }
 
 .hero-banner::before {
@@ -1279,4 +1292,5 @@ footer {
     box-shadow: none !important;
     border: 1px solid #ccc !important;
   }
+
 }

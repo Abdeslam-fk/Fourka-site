@@ -614,6 +614,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.remove('mobile-open');
+  });
+});
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelectorAll('.product-card').forEach(function(card) {
     card.addEventListener('click', function() {
@@ -621,3 +626,4 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
+

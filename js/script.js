@@ -377,7 +377,7 @@ class App {
     }
 
     displayCategories() {
-        const container = document.getElementById('categories-container');
+        const container = document.getElementById('categories-grid');
         if (!container) return;
         
         DATABASE.categories.forEach(categorie => {
@@ -399,7 +399,7 @@ class App {
     }
 
     displayProducts() {
-        const container = document.getElementById('products-container');
+        const container = document.getElementById('products-grid');
         if (!container) return;
         
         // Afficher seulement les produits populaires
@@ -445,7 +445,7 @@ class App {
     }
 
     displayStores() {
-        const container = document.getElementById('stores-container');
+        const container = document.getElementById('stores-grid');
         if (!container) return;
         
         Object.values(MAGASINS).forEach(magasin => {

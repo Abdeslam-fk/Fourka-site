@@ -183,7 +183,7 @@ header {
 
 /* Bannière héro moderne - Arrière-plan plus clair */
 .hero-banner {
-  background: linear-gradient(135deg, rgba(46, 139, 87, 0.7), rgba(26, 107, 59, 0.7)), url('ph.jpg') center/cover no-repeat;
+  background: linear-gradient(135deg, rgba(46, 139, 87, 0.7), rgba(26, 107, 59, 0.7)), url('../assets/images/ph.jpg') center/cover no-repeat;
   min-height: 80vh;
   display: flex;
   align-items: center;

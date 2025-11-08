@@ -5,6 +5,38 @@ const CONFIG = {
     MODAL_ANIMATION_DURATION: 300
 };
 
+// Fonction pour charger les composants HTML
+async function loadHTMLComponents() {
+    const components = [
+        { id: 'header-container', file: 'includes/header.html' },
+        { id: 'hero-container', file: 'includes/hero.html' },
+        { id: 'why-us-container', file: 'includes/why-us.html' },
+        { id: 'services-container', file: 'includes/services.html' },
+        { id: 'products-container', file: 'includes/products.html' },
+        { id: 'stores-container', file: 'includes/stores.html' },
+        { id: 'social-container', file: 'includes/social.html' },
+        { id: 'footer-container', file: 'includes/footer.html' },
+        { id: 'modal-container', file: 'includes/modal.html' }
+    ];
+
+    for (const component of components) {
+        try {
+            const response = await fetch(component.file);
+            if (response.ok) {
+                const html = await response.text();
+                const container = document.getElementById(component.id);
+                if (container) {
+                    container.innerHTML = html;
+                }
+            } else {
+                console.error(`Failed to load ${component.file}`);
+            }
+        } catch (error) {
+            console.error(`Error loading ${component.file}:`, error);
+        }
+    }
+}
+
 // Base de données des magasins
 const MAGASINS = {
     temara: {
@@ -65,7 +97,7 @@ const DATABASE = {
         {
             id: 1,
             nom: "Huile Moteur BBR Pro 5W30",
-            image: "bbr1.jpg",
+            image: "assets/images/bbr1.jpg",
             description: "Huile moteur synthétique haute performance pour une protection optimale du moteur",
             disponible: true,
             populaire: true
@@ -73,7 +105,7 @@ const DATABASE = {
         {
             id: 2,
             nom: "Kit Plaquettes de Frein",
-            image: "frein.jpg", 
+            image: "assets/images/frein.jpg", 
             description: "Plaquettes de frein haute qualité pour un freinage optimal et silencieux",
             disponible: true,
             populaire: true
@@ -81,7 +113,7 @@ const DATABASE = {
         {
             id: 3,
             nom: "Amortisseurs Avant (Paire)",
-            image: "amortisseur.jpg",
+            image: "assets/images/amortisseur.jpg",
             description: "Amortisseurs hydrauliques pour confort de conduite sur toutes les routes",
             disponible: true,
             populaire: true
@@ -89,7 +121,7 @@ const DATABASE = {
         {
             id: 4,
             nom: "Pot d'Échappement Complet",
-            image: "pot.jpg",
+            image: "assets/images/pot.jpg",
             description: "Système d'échappement complet pour performance optimale et réduction des émissions",
             disponible: true,
             populaire: false
@@ -97,15 +129,15 @@ const DATABASE = {
         {
             id: 5,
             nom: "Batterie Auto 70Ah",
-            image: "bbr3.jpg",
+            image: "assets/images/bbr3.jpg",
             description: "Batterie haute capacité pour démarrage fiable en toutes conditions",
             disponible: true,
             populaire: true
         },
         {
-            id: 6,
+            id: 4,
             nom: "Kit d'Embrayage Complet",
-            image: "embrayage.jpg",
+            image: "assets/images/pot.jpg",
             description: "Kit embrayage 3 pièces pour transmission optimale",
             disponible: false,
             populaire: false
@@ -254,9 +286,9 @@ class ModalManager {
     }
 }
 
-// Instances globales
-const notifications = new NotificationManager();
-const modal = new ModalManager();
+// Instances globales (seront initialisées après le chargement des composants)
+let notifications;
+let modal;
 
 // Initialisation de l'application
 class App {
@@ -345,7 +377,7 @@ class App {
     }
 
     displayCategories() {
-        const container = document.getElementById('categories-container');
+        const container = document.getElementById('categories-grid');
         if (!container) return;
         
         DATABASE.categories.forEach(categorie => {
@@ -367,7 +399,7 @@ class App {
     }
 
     displayProducts() {
-        const container = document.getElementById('products-container');
+        const container = document.getElementById('products-grid');
         if (!container) return;
         
         // Afficher seulement les produits populaires
@@ -413,7 +445,7 @@ class App {
     }
 
     displayStores() {
-        const container = document.getElementById('stores-container');
+        const container = document.getElementById('stores-grid');
         if (!container) return;
         
         Object.values(MAGASINS).forEach(magasin => {
@@ -581,7 +613,15 @@ window.fermerModal = () => modal.close();
 
 // Initialisation de l'application
 let app;
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // Charger les composants HTML d'abord
+    await loadHTMLComponents();
+    
+    // Initialiser les instances globales après le chargement des composants
+    notifications = new NotificationManager();
+    modal = new ModalManager();
+    
+    // Ensuite initialiser l'application
     app = new App();
 });
 
@@ -604,26 +644,5 @@ window.addEventListener('offline', () => {
     if (window.notifications) {
         notifications.show('Mode hors ligne activé', 'warning');
     }
-
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-  document.querySelectorAll('.product-card').forEach(function(card) {
-    card.addEventListener('click', function() {
-      this.querySelector('.flip-card-inner').classList.toggle('flipped');
-    });
-  });
-});
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.querySelector('.nav-links').classList.remove('mobile-open');
-  });
-});
-document.addEventListener("DOMContentLoaded", function() {
-  document.querySelectorAll('.product-card').forEach(function(card) {
-    card.addEventListener('click', function() {
-      this.querySelector('.flip-card-inner').classList.toggle('flipped');
-    });
-  });
 });
 

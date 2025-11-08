@@ -1,0 +1,44 @@
+<!-- Nos magasins -->
+<section class="stores-section" id="magasins">
+  <div class="container">
+    <h2>Nos 4 Magasins</h2>
+    <p class="section-subtitle">Choisissez le magasin le plus proche de vous</p>
+
+    <div class="stores-grid" id="stores-grid"></div>
+
+    <!-- Informations du magasin sélectionné -->
+    <div class="selected-store-card" id="selected-store" style="display: none">
+      <div class="store-header">
+        <h3 id="selected-store-name"></h3>
+        <span class="store-status"> <i class="fas fa-circle"></i> Ouvert </span>
+      </div>
+      <div class="store-content">
+        <div class="store-info">
+          <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span id="selected-store-address"></span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <span id="selected-store-phone"></span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-clock"></i>
+            <span id="selected-store-hours"></span>
+          </div>
+        </div>
+        <div class="store-actions">
+          <button class="btn btn-primary" id="btn-maps">
+            <i class="fas fa-map"></i> Voir sur Maps
+          </button>
+          <button class="btn btn-warning" id="btn-itineraire">
+            <i class="fas fa-route"></i> Obtenir l'itinéraire
+          </button>
+          <button class="btn btn-success" id="btn-appeler">
+            <i class="fas fa-phone"></i> Appeler
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
